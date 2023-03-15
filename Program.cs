@@ -70,6 +70,9 @@ public class PosisiKarakterGame
                     {
                         state = State.Terbang;
                         Console.Write("Posisi take off\n");
+                    } else if (command == "Stop")
+                    {
+                        state = State.Stop;
                     }
                     break;
                 case State.Terbang:
@@ -100,6 +103,6 @@ public class PosisiKarakterGame
                     }
                     break;
             }
-        } while (state == State.Stop);
+        } while (state != State.Stop);
     }
 }
