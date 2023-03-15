@@ -10,6 +10,10 @@ public class Program
         Console.Write("Buah :");
         string command = Console.ReadLine();
         table_Kodepos.getKodeBuah(command);
+
+        Console.WriteLine("================== POSISI KARAKTER ================");
+        PosisiKarakterGame posisi = new PosisiKarakterGame();
+        posisi.kunci();
     }
 
 
@@ -46,3 +50,56 @@ public class KodeBuah
     }
 }
 
+public class PosisiKarakterGame
+{
+    enum State { Jongkok, Berdiri, Tengkurap, Terbang };
+    public void kunci()
+    {
+        State state = State.Berdiri;
+
+        String[] screenName = { "Jongkok", "Berdiri", "Tengkurap", "Terbang" };
+        do
+        {
+            Console.WriteLine("Posisi " + screenName[(int)state]);
+            Console.Write("Enter Command : ");
+            String command = Console.ReadLine();
+            switch (state)
+            {
+                case State.Berdiri:
+                    if (command == "TombolW")
+                    {
+                        state = State.Terbang;
+                        Console.Write("Posisi take off\n");
+                    }
+                    break;
+                case State.Terbang:
+                    if (command == "TombolS")
+                    {
+                        state = State.Berdiri;
+                    }
+                    else if (command == "TombolX")
+                    {
+                        state = State.Jongkok;
+                        Console.Write("Posisi landing\n");
+                    }
+                    break;
+                case State.Jongkok:
+                    if (command == "TombolS")
+                    {
+                        state = State.Tengkurap;
+                    }
+                    else if (command == "TombolW")
+                    {
+                        state = State.Berdiri;
+                    }
+                    break;
+                case State.Tengkurap:
+                    if (command == "TombolW")
+                    {
+                        state = State.Jongkok;
+                    }
+                    break;
+            }
+        } while (state != State.Berdiri);
+    }
+}
