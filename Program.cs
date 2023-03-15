@@ -52,12 +52,12 @@ public class KodeBuah
 
 public class PosisiKarakterGame
 {
-    enum State { Jongkok, Berdiri, Tengkurap, Terbang };
+    enum State { Jongkok, Berdiri, Tengkurap, Terbang, Stop };
     public void kunci()
     {
         State state = State.Berdiri;
 
-        String[] screenName = { "Jongkok", "Berdiri", "Tengkurap", "Terbang" };
+        String[] screenName = { "Jongkok", "Berdiri", "Tengkurap", "Terbang", "Stop" };
         do
         {
             Console.WriteLine("Posisi " + screenName[(int)state]);
@@ -100,6 +100,6 @@ public class PosisiKarakterGame
                     }
                     break;
             }
-        } while (state != State.Berdiri);
+        } while (state == State.Stop);
     }
 }
